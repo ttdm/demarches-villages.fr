@@ -1,0 +1,47 @@
+{% load static %}
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light my-shadow">
+
+    <img style="max-width:10%; margin-right:2%;"
+      src="{% static 'imgs/logo.png' %}"
+      >
+
+    <div class="flex-container">
+      <div><p style="font-size: calc(0.60em + 1.6vw);">
+        Démarches
+        <span class="my-text-secondary">-</span>
+        villages
+        <span class="my-text-secondary">.fr</span>
+      </p></div>
+      <div><p class="text-secondary" style="font-size: calc(0.25em + 0.5vw);">
+        Plateforme de dématérialisation pour les petites communes
+      </p></div>
+    </div>
+
+
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" style="font-size: calc(0.3em + 1vw);" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item mx-3 {{home_page}}">
+          <a class="nav-link" href="{% url 'home' %}">Accueil</a>
+        </li>
+        <li class="nav-item mx-3 {{faq_page}}">
+          <a class="nav-link" href="{% url 'faq' %}">FAQ</a>
+        </li>
+        <li class="nav-item mx-3 {{inscrip_page}}">
+          <a class="nav-link" href="{% url 'inscription' %}">Inscription</a>
+        </li>
+      </ul>
+    </div>
+
+
+  </nav>

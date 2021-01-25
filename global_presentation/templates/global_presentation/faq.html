@@ -1,0 +1,96 @@
+{%  extends 'global_presentation/main.html' %}
+
+{% block content %}
+<div class="container mb-5">
+  <h1 class="text-center my-text-secondary small-partial-border">FAQ</h1>
+
+  <h3>Qu’est ce que Démarches-villages.fr ?</h3>
+  <p>C’est une plateforme permettant d’adresser des demandes administratives à
+    destination des communes inscrites dans la plus grande simplicité.</p>
+
+  <h3>Qu’est ce que fait exactement Démarches-villages.fr ?</h3>
+  <p>La plateforme Démarches-villages.fr permet de réaliser, en tout et pour tout, trois actions. Elle permet :</p>
+  <ul>
+    <li> pour une commune, de créer un espace composé de deux pages web,
+     <a href="{% url 'demoAdminView' %}">une page d’administration</a> et
+      <a href="{% url 'citizenView' url_city_name='demonstration' %}">une page publique</a>.</li>
+    <li> pour une commune, de définir sur la page d'administration une liste de démarches accessibles.</li>
+    <li> pour les citoyens, de remplir et envoyer des formulaires aux communes
+     inscrites. Les formulaires sont transmis par mail à l’adresse de contact
+     renseignée par la commune.</li>
+  </ul>
+  <h3>Qu’apporte Démarches-villages.fr ?</h3>
+  <p>Pour le citoyen, la liste de démarches qu’offre la commune, la liste
+    des pièces nécessaires à chaque démarche ainsi que la possibilité,
+    pour chacune des démarches offertes par
+    la commune, de faire la demande en ligne.</p>
+  <p>Pour la commune, un service supplémentaire de dématérialisation des demandes
+     en quelques minutes et sans coût. La centralisation de toutes les demandes
+     sur un mail.</p>
+  <p>Le gain principal de Démarches-villages.fr est un gain d’information pour les
+    citoyens qui leur permet d’effectuer une demande initiale à leur
+    convenance et non après une première réponse de la commune.
+    Pour la commune, il y a un gain de temps réel puisque mes-services.fr
+    limite les demandes d’informations préalables et permet de centraliser
+    les demandes sur le mail renseigné sur le portail.
+  </p>
+  <h3>Quelles limites à Démarches-villages.fr ?</h3>
+  <p>Démarches-villages.fr a été conçu pour les petites communes ne souhaitant pas ou, le plus souvent, ne pouvant pas
+   s’investir humainement et financièrement dans une gestion relation citoyen
+   en ligne plus complète. La règle d’or a été d’aller à la simplicité pour
+   permettre une mise en place en quelques minutes en espérant inciter de
+   nombreuses petites communes à utiliser ce service qui assure un service de
+   dématérialisation minimal.</p>
+
+  <p>Simplifier a cependant des inconvéniants, en voici deux majeurs :<p>
+  <ul>
+    <li>aucune personnalisation n’est possible ! Les démarches sont génériques,
+       toutes les communes utilisant le service proposent les même démarches.
+      Libre à chaque commune d’activer ou non les démarches mais
+      il est impossible de les modifier.</li>
+    <li>la centralisation des demandes est intéressante pour une petite commune,
+    où quelques personnes gèrent l’ensemble des demandes,
+    mais elle est néfaste pour les communes de plus grande taille
+    où les demandes doivent ensuite être manuellement réparties.</li>
+  </ul>
+  <div class="alert alert-danger" >
+    Pour ces raisons, Démarches-villages.fr est
+    conseillé aux communes de moins 2000 habitants
+      et est strictement limité aux communes de moins de 5000 habitants.
+  </div>
+  <p> Pour toutes les communes de plus de 2000 habitants, la mise en place d’une gestion relation citoyen (GRC)
+     personnalisable, à la fois pour le citoyen et pour l’administration,
+     devrait être privilégiée. Je vous renvoie vers une solution de GRC que
+     j’apprécie, <a href="https://publik.entrouvert.com/">Publik</a>.</p>
+
+  <h3>Qui s'occupe de la plateforme ?</h3>
+  <p>Pour l’instant un développeur en année sabbatique. </p>
+  <p>Peut être dans le futur une association pour promouvoir
+    la présence numérique des petites communes... ou un projet d'une
+     administration si l'une d'entre elle veut promouvoir une telle présence
+     et trouve ce projet intéressant.</p>
+
+  <h3>Quel business plan pour Démarches-villages.fr ?</h3>
+  <p> Aucun, le projet a été développé bénévolement durant une année sabbatique.
+  Je vivais simplement dans une petite commune sans dématérialisation et
+  souhaitais offrir une solution permettant de remédier à cela. <br />
+  Il n'y a donc
+  pas de business plan et pas d'ambition commerciale pour Démarches-villages.fr.<br />
+  Si vous souhaitez contribuer au coût de l’hébergement,
+  c'est évidemment avec plaisir. Vous pouvez pour cela me contacter par mail
+   à thibaut.tezenas(at)protonmail.com. </p>
+
+  <h3>J'appartiens à une commune inscrite, comment modifier / ajouter  ... ?</h3>
+  <p>Comme expliqué précedemment, dans le but de rendre l'utilisation du site la plus simple possible,
+  très peu d'options sont disponibles pour personnaliser votre espace. </p>
+  <p>Cela étant dit, le site en est à ses débuts ce qui implique qu'il y a probablement des
+  formulaires relativement communs manquants et qu'il reste une marge d'amélioration du service.
+  Si vous avez des demandes d'ajouts ou de modifications, n'hésitez pas à me contacter
+  par mail à thibaut.tezenas(at)protonmail.com. </p>
+
+
+  <h3>J'ai une question, une remarque ... ?</h3>
+  <p>N'hésitez pas à me contacter par mail à thibaut.tezenas(at)protonmail.com. </p>
+
+</div>
+{% endblock %}

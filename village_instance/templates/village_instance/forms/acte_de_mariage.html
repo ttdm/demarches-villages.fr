@@ -1,0 +1,239 @@
+{%  extends 'village_instance/main.html' %}
+
+{% block content %}
+
+{% load myfilters %}
+
+{% include "global_presentation/messages.html" %}
+{% include "global_presentation/form_errors.html" with form=form %}
+
+{% load static %}
+<div class="container white_bg pt-4 mb-5 pb-3" style='background-image:url("{% static '/imgs/white_transparent_bg.png' %}");'>
+
+  <h1 class="text-center my-text-secondary small-partial-border">
+    Acte de mariage</h1>
+  <div class="offset-2 col-8 alert alert-warning text-center">
+    Ne remplir la demande ci-dessous que si les personnes concernées se sont mariées
+     à {{city.name}}. <br>
+     Sinon, vous pouvez regarder si la commune de mariage
+      figure dans la <a href="{% url 'searchCity' %}">liste
+        des communes inscrites sur la plateforme</a>.
+ </div>
+
+<p><span class="asterix-style">*</span> Champ Obligatoire</p>
+
+ <form class="" method="post">
+     {% csrf_token %}
+
+	<h3 class="my-4">Le demandeur</h3>
+
+  <label for="demandeur_qualite">Qualité du demandeur
+    <span class="asterix-style">*</span></label>
+  {{form.demandeur_qualite|addclass:'col-12'}}
+
+  <label class="mt-2" for="type_acte">Type d'acte
+    <span class="asterix-style">*</span></label>
+  {{form.type_acte|addclass:'col-12'}}
+
+  <label class="mt-2" for="nombre_exemplaires">Nombre d'exemplaires
+    <span class="asterix-style">*</span></label>
+  {{form.nombre_exemplaires|addclass:'col-12'}}
+
+  <div class="row">
+    <div class="col-6">
+      <label class="mt-2" for="demandeur_nom">Nom
+        <span class="asterix-style">*</span></label>
+        {{form.demandeur_nom|addclass:'col-12'}}
+      </div>
+    <div class="col-6">
+      <label class="mt-2" for="demandeur_prenom">Prénoms
+        <span class="asterix-style">*</span></label>
+        {{form.demandeur_prenom|addclass:'col-12'}}
+    </div>
+  </div>
+
+
+  <label class="mt-2" for="demandeur_adresse">Adresse complète
+    <span class="asterix-style">*</span></label>
+    <textarea id="demandeur_adresse" name="demandeur_adresse" class="form-control col-12"
+     rows="3" required></textarea>
+
+     <div class="row">
+       <div class="col-6">
+         <label class="mt-2" for="demandeur_phone">Téléphone
+           <span class="asterix-style">*</span></label>
+           {{form.demandeur_phone|addclass:'col-12'}}
+         </div>
+       <div class="col-6">
+         <label class="mt-2" for="demandeur_mail">E-Mail
+           <span class="asterix-style">*</span></label>
+           {{form.demandeur_mail|addclass:'col-12'}}
+       </div>
+     </div>
+
+  <h3 class="mt-5 mb-2">Le mariage</h3>
+  <div class="row">
+    <div class="col-12">
+      <label class="mt-2" for="wedding_date">Date du mariage
+        <span class="asterix-style">*</span></label>
+        <input class="form-control col-12 datePlaceHolder" id="wedding_date"
+            name="wedding_date"  placeholder="  jj / mm / aaaa" required type="text"/>
+      </div>
+
+  </div>
+
+  <h3 class="mt-5 mb-2">1er conjoint</h3>
+
+  <div class="row">
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_nom">Nom de Naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint1_nom|addclass:'col-12'}}
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_prenom">Prénoms
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint1_prenom|addclass:'col-12'}}
+    </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_birthdate">Date de Naissance
+        <span class="asterix-style">*</span></label>
+        <input class="form-control col-12 datePlaceHolder" id="conjoint1_birthdate"
+            name="conjoint1_birthdate"  placeholder="  jj / mm / aaaa" required type="text"/>
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_birthplace">Lieu de Naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint1_birthplace|addclass:'col-12'}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_parent1_nom">Parent 1 - Nom de naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint1_parent1_nom|addclass:'col-12'}}
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_parent1_prenom datePlaceHolder">Prénoms
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint1_parent1_prenom|addclass:'col-12'}}
+    </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_parent1_birthdate">Date de naissance
+        <span class="asterix-style">*</span></label>
+        <input class="form-control col-12 datePlaceHolder" id="conjoint1_parent1_birthdate"
+            name="conjoint1_parent1_birthdate"  placeholder="  jj / mm / aaaa" required type="text"/>
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_parent1_birthplace">Lieu de naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint1_parent1_birthplace|addclass:'col-12'}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_parent2_nom">Parent 2 - Nom de naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint1_parent2_nom|addclass:'col-12'}}
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_parent2_prenom">Prénoms
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint1_parent2_prenom|addclass:'col-12'}}
+    </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_parent2_birthdate">Date de naissance
+        <span class="asterix-style">*</span></label>
+        <input class="form-control col-12 datePlaceHolder" id="conjoint1_parent2_birthdate"
+            name="conjoint1_parent2_birthdate"  placeholder="  jj / mm / aaaa" required type="text"/>
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint1_parent2_birthplace">Lieu de naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint1_parent2_birthplace|addclass:'col-12'}}
+    </div>
+  </div>
+
+  <h3 class="mt-5 mb-2">2ème conjoint</h3>
+
+  <div class="row">
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_nom">Nom de Naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint2_nom|addclass:'col-12'}}
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_prenom">Prénoms
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint2_prenom|addclass:'col-12'}}
+    </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_birthdate">Date de Naissance
+        <span class="asterix-style">*</span></label>
+        <input class="form-control col-12 datePlaceHolder" id="conjoint2_birthdate"
+            name="conjoint2_birthdate"  placeholder="  jj / mm / aaaa" required type="text"/>
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_birthplace">Lieu de Naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint2_birthplace|addclass:'col-12'}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_parent1_nom">Parent 1 - Nom de naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint2_parent1_nom|addclass:'col-12'}}
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_parent1_prenom datePlaceHolder">Prénoms
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint2_parent1_prenom|addclass:'col-12'}}
+    </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_parent1_birthdate">Date de naissance
+        <span class="asterix-style">*</span></label>
+        <input class="form-control col-12 datePlaceHolder" id="conjoint2_parent1_birthdate"
+            name="conjoint2_parent1_birthdate"  placeholder="  jj / mm / aaaa" required type="text"/>
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_parent1_birthplace">Lieu de naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint2_parent1_birthplace|addclass:'col-12'}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_parent2_nom">Parent 2 - Nom de naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint2_parent2_nom|addclass:'col-12'}}
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_parent2_prenom">Prénoms
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint2_parent2_prenom|addclass:'col-12'}}
+    </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_parent2_birthdate">Date de naissance
+        <span class="asterix-style">*</span></label>
+        <input class="form-control col-12 datePlaceHolder" id="conjoint2_parent2_birthdate"
+            name="conjoint2_parent2_birthdate"  placeholder="  jj / mm / aaaa" required type="text"/>
+      </div>
+    <div class="col-6 col-lg-3">
+      <label class="mt-2" for="conjoint2_parent2_birthplace">Lieu de naissance
+        <span class="asterix-style">*</span></label>
+        {{form.conjoint2_parent2_birthplace|addclass:'col-12'}}
+    </div>
+  </div>
+
+<div class="mt-5 center">
+  <input class="btn btn-primary" type="submit" name="submit" value="Valider votre demande"/>
+</div>
+  </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+
+<!-- message type currently in use : info success error -->
+{% for message in messages %}
+<div class="row">
+  {% if message.tags == "error" %}
+	<div class="mt-5 offset-2 col-8 alert alert-warning">
+  {% elif message.tags == "success" %}
+  <div class="mt-5 offset-2 col-8 alert alert-success">
+  {% elif message.tags == "info" %}
+  <div class="mt-5 offset-2 col-8 alert alert-info">
+  {% else %}
+  <div class="mt-5 offset-2 col-8 alert alert-info">
+  {% endif %}
+    {{message}}
+	</div>
+</div>
+{% endfor %}

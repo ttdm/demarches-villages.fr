@@ -1,0 +1,149 @@
+{%  extends 'village_instance/main.html' %}
+
+{% block content %}
+
+{% load myfilters %}
+{% load leaflet_tags %}
+
+{% include "global_presentation/messages.html" %}
+{% include "global_presentation/form_errors.html" with form=form %}
+
+
+{% load static %}
+<div class="container white_bg pt-4 mb-5 pb-3" style='background-image:url("{% static '/imgs/white_transparent_bg.png' %}");'>
+
+  <h1 class="text-center my-text-secondary small-partial-border">
+    Signalement : {{formObject.name_descrip}} </h1>
+    <div class="offset-2 col-8 alert alert-warning text-center">
+      Ne remplir la demande ci-dessous que si le signalement
+      concerne {{city.name}}. <br/>
+      Sinon, vous pouvez regarder si la commune concernée
+       figure dans la <a href="{% url 'searchCity' %}">liste des
+         communes inscrites sur la plateforme</a>.
+   </div>
+
+  <p><span class="asterix-style">*</span> Champ Obligatoire</p>
+
+ <form class="" method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+
+	<h3 class="my-4">Vos coordonnées</h3>
+
+  <div class="row">
+    <div class="col-6">
+      <label class="mt-2" for="nom">Nom
+        <span class="asterix-style">*</span></label>
+        {{form.nom|addclass:'col-12'}}
+      </div>
+    <div class="col-6">
+      <label class="mt-2" for="prenom">Prénom
+        <span class="asterix-style">*</span></label>
+        {{form.prenom|addclass:'col-12'}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <label class="mt-2" for="email">Email
+        <span class="asterix-style">*</span></label>
+        {{form.email|addclass:'col-12'}}
+      </div>
+    <div class="col-6">
+      <label class="mt-2" for="phone">Téléphone</label>
+        {{form.phone|addclass:'col-12'}}
+    </div>
+  </div>
+
+  <h3 class="my-4">Emplacement du signalement</h3>
+
+  <div class="row">
+    <div class="offset-lg-2 col-lg-8 col-12">
+      {% leaflet_map "main" callback="main_map_init" %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2 col-2">
+      <label class="mt-2" for="street_number">Numéro</label>
+      <input type="text" id="street_number" name="street_number" class="col-12" value="">
+      </div>
+    <div class="col-lg-6 col-10">
+      <label class="mt-2" for="phone">Voie
+        <span class="asterix-style">*</span></label>
+        <input type="text" id="street" name="street" class="col-12" value="" required>
+    </div>
+    <div class="col-lg-4 col-12">
+      <label class="mt-2" for="city">Commune
+        <span class="asterix-style">*</span></label>
+        <input type="text" id="city" name="city" class="col-12" value="" required>
+    </div>
+  </div>
+  <div hidden>
+    <input type="text" id="lat" name="lat" value="">
+    <input type="text" id="lng" name="lng" value="">
+  </div>
+
+  <script type="text/javascript">
+      function main_map_init (map, options) {
+          // Use Leaflet API here
+          //var my_mark = L.marker([{{lat}}, {{lng}}]).addTo(map);
+          var my_mark = L.marker([45.5, 5.5]).addTo(map);
+
+
+          const onclicfunction = async function(e){
+              // move marker at click location
+              my_mark.setLatLng(e.latlng);
+              $("#lat").val(e.latlng.lat);
+              $("#lng").val(e.latlng.lng);
+
+              $url = "https://nominatim.openstreetmap.org/reverse?"
+              +"email=contact@demarches_villages.fr"
+              +"&format=json&lat="+e.latlng.lat
+              +"&lon="+e.latlng.lng
+              +"&addressdetails=1";
+              var apiResponse = await fetch($url);
+              var json = await apiResponse.json();
+              // call reverse geocoding service (nominatim)
+              $("#street_number").val(json.address.house_number);
+              $("#street").val(json.address.road);
+              if(json.address.city)
+              {
+                $("#city").val(json.address.city);
+              } else {
+                $("#city").val(json.address.village);
+              }
+
+          }
+          map.on('click', onclicfunction);
+      }
+  </script>
+
+  <h3 class="my-4">Précisions sur le signalement</h3>
+
+  <label class="mt-2" for="description">Description
+    <span class="asterix-style">*</span></label>
+    <textarea id="description" name="description" class="form-control col-12"
+     rows="3" required></textarea>
+
+   <div class="row">
+     <div class="col-6">
+       <label class="mt-2" for="pic1">Image 1</label>
+         {{form.pic1|addclass:'col-12'}}
+       </div>
+     <div class="col-6">
+       <label class="mt-2" for="demandeur_mail">Image 2</label>
+         {{form.pic2|addclass:'col-12'}}
+     </div>
+     <div class="col-12 center mt-2">
+        <i class="small">
+          La majorité des formats d'images courants sont acceptés, cela inclut : png, jpeg, pdf, bmp, gif, tif ...
+          </i>
+     </div>
+   </div>
+
+ <div class="mt-5 center">
+   <input class="btn btn-primary" type="submit" name="submit" value="Valider votre demande"/>
+ </div>
+</form>
+</div>
+
+{% endblock content %}

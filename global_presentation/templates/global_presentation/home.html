@@ -1,0 +1,82 @@
+{%  extends 'global_presentation/main.html' %}
+
+{% block content %}
+
+{% load static %}
+<div id="bg" style='background-image:url("{% static '/imgs/global_prensentation_bg2.jpg' %}");'>
+  <div class="container">
+
+{% include "global_presentation/messages.html" %}
+
+      <div class="row text-center" style="font-size: calc(1em + 0.4vw);">
+        <div class="col-12">
+          Bienvenue sur la plateforme Démarches
+          <span class="my-text-secondary">-</span>
+          villages
+          <span class="my-text-secondary">.fr</span>, <br />
+          un service <span class="my-text-secondary"> offert </span> aux petites communes pour les inciter à
+          dématérialiser les procédures administratives qu'elles assurent.
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row justify-content-around" style="margin-top: 80px;">
+      <div class="card col-11 col-lg-5 mb-4">
+        <div
+        class="card-body text-center big my-text-secondary partial-border">
+        Utilisation des services d'une mairie inscrite sur la plateforme
+      </div>
+        <div class="card-body text-center">
+          <p>Si vous cherchez les services d'une commune utilisant la plateforme
+            mais ne disposez pas de l'adresse exacte pour y accéder,
+            vous pouvez les retrouver en sélectionnant la commune de votre choix
+              dans le menu déroulant qui suit : </p>
+          <form method="post" action="" class="center">
+            {% csrf_token %}
+            {{cityDropDownForm.city}}
+            <button type="submit" class="btn btn-outline-primary">
+            Accéder aux services <br class="d-block d-sm-none"/>de ma commune
+            </button>
+          </form>
+
+
+            <div style="margin-top:30px" class="alert alert-dark">
+              Rappel : pour l'administration d'un compte mairie, <a href="{% url 'adminView' %}">c'est ici</a>.
+            </div>
+        </div>
+      </div>
+      <div class="card col-11 col-lg-5 mb-4">
+        <div class="card-body text-center big my-text-secondary partial-border">
+          Mise en place des services</div>
+        <div class="card-body">
+          <p>Pour découvrir la plateforme, vous pouvez :</p>
+          <ul>
+            <li><a href="{% url 'citizenView' url_city_name='demonstration' %}">
+              découvrir l'interface utilisateur pour effectuer les demandes
+              </a></li>
+            <li><a href="{% url 'demoAdminView' %}">découvrir l'interface d'administration
+            </a></li>
+          </ul>
+
+          <p>Si cette première découverte vous convient, l'étape suivante est
+            de <a href="{% url 'faq' %}">lire la foire aux questions</a> qui explique précisement
+            ce qu'est Démarches
+            <span class="my-text-secondary">-</span>
+            villages
+            <span class="my-text-secondary">.fr</span>. </p>
+
+          <p>Finalement, si vous souhaitez mettre en place le service Démarches
+          <span class="my-text-secondary">-</span>
+          villages
+          <span class="my-text-secondary">.fr</span>
+             dans votre commune et que vous êtes en droit de faire une demande de création
+              de compte pour votre mairie, <a href="{% url 'inscription' %}">ça se passe ici</a>.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

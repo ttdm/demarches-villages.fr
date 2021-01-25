@@ -1,0 +1,20 @@
+
+<!-- message type currently in use : info success error -->
+{% if form.errors %}
+  <div class="row">
+    <div class="mt-5 offset-2 col-8 alert alert-warning">
+      {% for field in form %}
+        {% if field.errors %}
+          <li class="mb-n3">
+            {{ field.label }}
+            <ul class="errorlist">
+              {% for error in field.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

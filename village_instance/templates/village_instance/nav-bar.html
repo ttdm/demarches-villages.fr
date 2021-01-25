@@ -1,0 +1,44 @@
+{% load static %}
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light my-shadow">
+  <div class="mx-auto">
+    <a class="navbar-brand" href="{% url 'citizenView' url_city_name=city.url %}">
+      {% if city.profile_image %}
+        <img  class="nav_bar_logo" src="{{city.profile_image.url}}" alt="">
+      {% endif %}
+      {{city.name}} - Démarches en ligne</a>
+  </div>
+
+  <button class="navbar-toggler" type="button"
+  data-toggle="collapse" data-target="#navbarNavAltMarkup"
+  aria-controls="navbarNavAltMarkup" aria-expanded="false"
+  aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+  <div class="collapse navbar-collapse w-100 order-2" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      {% if demo %}
+        <a class="nav-item nav-link text-secondary {{citizen_page}}"
+          href="{% url 'citizenView' url_city_name=city.url %}">
+          Vue Citoyen ({% if accueil != True %}Retour {% endif %}Accueil)</a>
+        <a class="nav-item nav-link text-secondary {{admin_page}}"
+          href="{% url 'demoAdminView' %}">
+          Pannel Admin </a>
+      {% elif user.is_anonymous == False %}
+        <a class="nav-item nav-link  text-secondary {{citizen_page}}"
+          href="{% url 'citizenView' url_city_name=city.url %}">
+          Vue Citoyen ({% if accueil != True %}Retour {% endif %}Accueil)</a>
+          <a class="nav-item nav-link text-secondary {{admin_page}}"
+            href="{% url 'adminView' %}">
+            Pannel Admin </a>
+          <a class="nav-item nav-link text-secondary"
+            href="{% url 'logout' %}">
+          Déconnexion</a>
+      {% else %}
+        <a class="nav-item nav-link text-secondary {{citizen_page}}"
+          href="{% url 'citizenView' url_city_name=city.url %}">
+          {% if accueil != True %}Retour {% endif %}Accueil</a>
+      {% endif %}
+  </div>
+</nav>

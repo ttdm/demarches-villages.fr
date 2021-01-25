@@ -1,0 +1,106 @@
+{%  extends 'village_instance/main.html' %}
+
+{% block content %}
+
+{% load myfilters %}
+
+{% include "global_presentation/messages.html" %}
+{% include "global_presentation/form_errors.html" with form=form %}
+
+
+{% load static %}
+<div class="container white_bg pt-4 mb-5 pb-3" style='background-image:url("{% static '/imgs/white_transparent_bg.png' %}");'>
+
+  <h1 class="text-center my-text-secondary small-partial-border">
+    Inscription sur les listes électorales</h1>
+  <div class="offset-2 col-8 alert alert-warning text-center">
+    Ne remplir la demande ci-dessous que si vous souhaitez vous inscrire
+    sur les listes électorales de {{city.name}}. <br/>
+    Sinon, vous pouvez regarder si la commune dans laquelle vous souhaitez
+    vous inscrire
+     figure dans la <a href="{% url 'searchCity' %}">liste des
+       communes inscrites sur la plateforme</a>. </div>
+
+ <p><span class="asterix-style">*</span> Champ Obligatoire</p>
+
+ <form class="" enctype="multipart/form-data" method="post">
+     {% csrf_token %}
+
+     <div class="row">
+       <div class="col-6">
+         <label class="mt-2" for="nom">Nom
+           <span class="asterix-style">*</span></label>
+           {{form.nom|addclass:'col-12'}}
+         </div>
+       <div class="col-6">
+         <label class="mt-2" for="prenom">Prénoms
+           <span class="asterix-style">*</span></label>
+           {{form.prenoms|addclass:'col-12'}}
+       </div>
+     </div>
+
+     <label class="mt-2" for="adresse">Votre adresse
+       <span class="asterix-style">*</span></label>
+       <textarea id="adresse" name="adresse" class="form-control col-12"
+        rows="3" required></textarea>
+
+     <div class="row mb-4">
+       <div class="col-6">
+         <label class="mt-2" for="mail">Courriel
+           <span class="asterix-style">*</span></label>
+           {{form.mail|addclass:'col-12'}}
+       </div>
+       <div class="col-6">
+         <label class="mt-2" for="phone">Téléphone</label>
+           {{form.phone|addclass:'col-12'}}
+       </div>
+     </div>
+
+     <label for="demandeur_qualite">Situation du demandeur
+       <span class="asterix-style">*</span></label>
+     {{form.situation|addclass:'col-12'}}
+
+     <label class="mt-1" for="demandeur_qualite_autre">Si autre, préciser :</label>
+     {{form.situation_autre|addclass:'col-12'}}
+
+     <h3 class="mt-5 mb-3">Pièces justificatives</h3>
+
+     <div class="row my-3 align-items-center">
+ 			<div class="col-12 col-md-5">
+        <label for="id1">Justificatif d'identité
+          <span class="asterix-style">*</span> </label>
+          <br>
+          {{form.id1|addclass:'col-12'}}
+          {{form.id2|addclass:'col-12'}}
+ 			</div>
+ 			<div class="col-12 col-md-7" style="vertical-align: bottom;">
+ 				<i class="">
+          Photocopie recto-verso de la carte d'identité ou
+          de la double page de votre passeport où figure votre photo.
+        <br/> <span class="small">Formats acceptés : png, jpeg, pdf, bmp, gif, tif.</span></i>
+ 			</div>
+ 		</div>
+
+    <div class="row my-3 align-items-center">
+     <div class="col-12 col-md-5">
+       <label for="id1">Justificatif d'adresse
+         <span class="asterix-style">*</span> </label>
+         <br>
+         {{form.justificatif_adresse|addclass:'col-12'}}
+     </div>
+     <div class="col-12 col-md-7" style="vertical-align: bottom;">
+       <i class="">
+         Facture d’électricité, de gaz ou de téléphone fixe à vos noms et prénoms
+         et de moins de 3 mois. <br/>
+          <span class="small">Formats acceptés : png, jpeg, pdf, bmp, gif, tif.</span></i>
+     </div>
+   </div>
+
+
+    <div class="mt-5 center">
+     <input class="btn btn-primary" type="submit" name="submit" value="Valider votre demande"/>
+    </div>
+ </form>
+</div>
+
+{% endblock content %}

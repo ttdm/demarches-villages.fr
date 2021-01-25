@@ -1,0 +1,45 @@
+{%  extends 'global_presentation/main.html' %}
+
+{% block content %}
+
+{% load static %}
+<div id="bg" style='background-image:url("{% static '/imgs/global_prensentation_bg2.jpg' %}");'>
+  <div class="container">
+
+    {% include "global_presentation/messages.html" %}
+    
+      <div class="row text-center" style="font-size: calc(1em + 0.4vw);">
+        <div class="col-12">
+          Bienvenue sur la plateforme générique Démarches
+          <span class="my-text-secondary">-</span>
+          villages
+          <span class="my-text-secondary">.fr</span>, <br />
+          un service <span class="my-text-secondary"> offert </span> aux petites communes pour les inciter à
+          dématérialiser les procédures administratives qu'elles assurent.
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row justify-content-around" style="margin-top: 80px;">
+      <div class="card col-11 col-lg-5 mb-4">
+        <div
+        class="card-body text-center big my-text-secondary partial-border">
+        Liste des mairies inscrites sur la plateforme
+      </div>
+        <div class="card-body text-center">
+          <form method="post" action="" class="center">
+            {% csrf_token %}
+            {{cityDropDownForm.city}}
+            <button type="submit" class="btn btn-outline-primary">
+            Accéder aux services <br class="d-block d-sm-none"/>de ma commune
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

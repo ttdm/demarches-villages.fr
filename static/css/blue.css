@@ -1,0 +1,38 @@
+
+.navbar{
+	background-color: #ededf6 !important;
+}
+
+h3, th, .my-text-secondary, form a, form a:hover,
+.all_but_nav_and_foot a, .all_but_nav_and_foot a:hover,
+.asterix-style, .alert a {
+	color: #004d99 !important;
+}
+
+.btn.collapsed:hover {
+  background-color: #004d99 !important;
+}
+
+.btn-primary:hover, .btn-outline-primary:hover  {
+  background-color: #05C !important;
+	border-color: #05C !important;
+}
+
+.btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary:visited,
+.btn.collapsed {
+	border-color: #004d99 !important;
+	color: #004d99 !important;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:visited {
+	background-color: #004d99 !important;
+	border-color: #004d99 !important;
+}
+
+.partial-border:after, .small-partial-border:after {
+	border-bottom: 2px solid #004d99;
+}
+
+.my-shadow{
+	box-shadow: 0 4px 8px 0 #004d99, 0 6px 20px 0 rgba(1, 0, 0, 0.19);
+}

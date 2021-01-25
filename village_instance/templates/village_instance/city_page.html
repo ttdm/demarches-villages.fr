@@ -1,0 +1,33 @@
+{%  extends 'village_instance/main.html' %}
+
+{% block content %}
+
+{% include "global_presentation/messages.html" %}
+{% load static %}
+<div class="container white_bg pt-4 mb-5 pb-3" style='background-image:url("{% static '/imgs/white_transparent_bg.png' %}");'>
+{% for category in listOfAllCategories%}
+  {% if category in listOfActivatedCategories %}
+    <h3 class="small-partial-border my-4">{{category}}</h3>
+    <div class="row">
+    {% for activatedForm in listOfActivatedForms %}
+      {% if activatedForm.category == category %}
+      <div class="col-12 col-lg-6 my-2">
+      <a class="custom-card"
+        href="{% url 'formView' url_city_name=city.url url_form_name=activatedForm.url %}">
+          <div class="card h-100">
+            <div class="card-body">
+              <span class="my-text-secondary">{{activatedForm.name_descrip}}</span> <br>
+              {{activatedForm.description}}
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endfor %}
+</div>
+
+
+{% endblock content %}

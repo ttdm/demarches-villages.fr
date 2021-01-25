@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Démarches villages - Page introuvable</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+</head>
+
+<body style='height: 100%;margin: 0; background-image:url("{% static '/imgs/global_presentation_bg.jpg' %}");'>
+  <h1 class="center v-space-above">
+    Page Introuvable
+  </h1>
+  <h4 class="center"> Commune non inscrite ou formulaire non disponible pour la commune <br>
+</h3>
+  <div class="container-fluid">
+    <div class="row v-space-above justify-content-around center">
+      <div class="card col-12 col-lg-5">
+        <div class="card-body">
+          <p>Si vous cherchez les services d'une commune utilisant la plateforme
+            et ne disposez pas de l'adresse exacte pour y accéder,
+            vous pouvez les retrouver en sélectionnant la commune de votre choix
+            dans le menu déroulant qui suit : </p>
+          <form method="POST" action="{% url 'home' %}" class="center">
+            {% csrf_token %}
+            {{cityDropDownForm.city}}
+            <input type="submit" class="btn btn-primary" value="Accéder aux services de ma commune">
+            </input>
+          </form>
+          <div class="alert alert-dark">
+            Rappel : pour l'administration d'un compte mairie, <a href="{% url 'login' %}">c'est ici</a>.
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-1 big align-self-center">
+        <p class="text-center"> Ou </p>
+      </div>
+      <div class="col-12 col-lg-5 align-self-center">
+          <a class="btn btn-primary" href="{% url 'home' %}">
+            Revenir à la page d'accueil
+          </a>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</html>

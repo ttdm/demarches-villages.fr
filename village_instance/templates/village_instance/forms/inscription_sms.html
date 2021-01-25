@@ -1,0 +1,78 @@
+{%  extends 'village_instance/main.html' %}
+
+{% block content %}
+
+{% load myfilters %}
+
+{% include "global_presentation/messages.html" %}
+{% include "global_presentation/form_errors.html" with form=form %}
+
+
+{% load static %}
+<div class="container white_bg pt-4 mb-5 pb-3" style='background-image:url("{% static '/imgs/white_transparent_bg.png' %}");'>
+
+  <h1 class="text-center my-text-secondary small-partial-border">
+    Inscription Alerte SMS</h1>
+  <div class="offset-2 col-8 alert alert-warning text-center">
+    {{city.name}} peut vous permettre de recevoir, par message sur votre
+    téléphone mobile, des alertes en cas d’alerte d’inondations, incendies,
+    ou autre évènement important ou exceptionnel… <br>
+    Le détail des services disponibles varie de commune en commune.
+    Veuillez cocher la case dédiée dans le formulaire si vous souhaitez
+    recevoir la liste des services disponibles plutôt que d'y être directement
+    inscrit.e.
+ </div>
+
+ <p><span class="asterix-style">*</span> Champ Obligatoire</p>
+
+ <form class="" method="post">
+     {% csrf_token %}
+
+     <div class="row">
+       <div class="col-6">
+         <label class="mt-2" for="nom">Nom
+           <span class="asterix-style">*</span></label>
+           {{form.nom|addclass:'col-12'}}
+         </div>
+       <div class="col-6">
+         <label class="mt-2" for="prenom">Prénom
+           <span class="asterix-style">*</span></label>
+           {{form.prenom|addclass:'col-12'}}
+       </div>
+     </div>
+
+     <label class="mt-2" for="adresse">Adresse complète
+       <span class="asterix-style">*</span></label>
+       <textarea id="adresse" name="adresse" class="form-control col-12"
+        rows="3" required></textarea>
+
+     <div class="row mb-4">
+       <div class="col-6">
+         <label class="mt-2" for="phone">Téléphone
+           <span class="asterix-style">*</span></label>
+           {{form.phone|addclass:'col-12'}}
+       </div>
+     </div>
+
+    {{form.delay_inscription}}
+     <label class="mt-2" for="delay_inscription">
+     Demande d'informations supplémentaires avant inscription</label>
+
+
+    <div class="row">
+      <div class="col-12">
+        <label class="mt-2" for="mail">Votre email pour l'envoi d'informations</label>
+          {{form.mail|addclass:'col-12'}}
+        </div>
+    </div>
+
+
+
+
+    <div class="mt-5 center">
+     <input class="btn btn-primary" type="submit" name="submit" value="Valider votre demande"/>
+    </div>
+ </form>
+</div>
+
+{% endblock content %}
